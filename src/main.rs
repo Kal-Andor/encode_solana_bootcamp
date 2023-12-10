@@ -5,13 +5,18 @@ fn main() {
 }
 
 fn fizz_buzz() {
+    let mut counter:i32 =0;
     for n in 1..=301 {
-        // match n % 3 {
-        //     0 => println!(" fizz {}", &n),
-        //     _ => {}
-        // }
-        let word = if n % 15 == 0 { "fizz-buzz" } else if n % 3 == 0 { "fizz" } else if n % 5 == 0 { "buzz" } else { "" };
-        println!("{} {}", word, n)
+        let word:Option<&str> =
+            if n % 15 == 0 { Some("fizz-buzz") }
+            else if n % 3 == 0 { Some("fizz") }
+            else if n % 5 == 0 { Some("buzz") }
+            else { None };
+        match word {
+            Some("fizz-buzz") => {println!("fizz-buzz"); counter += 1}
+            Some(result) => {println!("{}", result)}
+            None => {}
+        }
     }
+    println!("Number of 'fizz-buzz'-s:{}", counter)
 }
-
